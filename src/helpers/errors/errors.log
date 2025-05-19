@@ -1,0 +1,1 @@
+[31mERROR[39m: undefined {"code":8000,"codeName":"AtlasError","connectionGeneration":0,"errorLabelSet":{},"errorResponse":{"code":8000,"codeName":"AtlasError","errmsg":"bad auth : authentication failed","ok":0},"ok":0}

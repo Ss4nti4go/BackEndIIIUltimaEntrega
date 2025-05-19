@@ -1,0 +1,89 @@
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:23
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:26
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:26
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:27
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:28
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:28
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:29
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:32
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:34
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:37
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:40
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:42
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:45
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:47
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:50
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:53
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:55
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:44:58
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:01
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:03
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:06
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:08
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:11
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:14
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:16
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:19
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:22
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:24
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:27
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:29
+[32mHTTP[39m: GET /api/sumar/muchos - 19/5/2025, 18:45:32
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/products/10 - 19/5/2025, 19:05:00
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/products/10 - 19/5/2025, 19:06:15
+[32mHTTP[39m: GET /api/mocks/products/10 - 19/5/2025, 19:06:58
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/users/10 - 19/5/2025, 19:07:46
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/users/10 - 19/5/2025, 19:08:03
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/users/10 - 19/5/2025, 19:09:04
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: GET /api/mocks/users/10 - 19/5/2025, 19:09:26
+[32mHTTP[39m: POST /api/mocks/generateData?users=10&pets=5 - 19/5/2025, 19:10:27
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[34mINFO[39m: Database connected
+[34mINFO[39m: Server listening on port 8080 and mode dev
+[32mHTTP[39m: POST /api/mocks/generateData?users=10&pets=5 - 19/5/2025, 19:12:03
+[32mHTTP[39m: GET /api/mocks/mockingusers - 19/5/2025, 19:12:27
