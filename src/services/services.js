@@ -1,4 +1,4 @@
-import { productsManager, userManager, petsManager } from "../dao/managers/mongo.manager.js";
+import { productsManager, userManager, petsManager, cartManager } from "../dao/managers/mongo.manager.js";
 
 class Service {
     constructor(manager) {
@@ -28,10 +28,16 @@ class Service {
     destroyById = async (id) => {
         return await this.manager.destroyById(id);
     }
+    addProductToCart = async (cid, pid) => {
+        return await this.manager.addProductToCart(cid, pid);
+    }
+    deleteProductFromCart = async (cid, pid) => {
+        return await this.manager.deleteProductFromCart(cid, pid);
+    }
 }
 
 const productsService = new Service(productsManager);
 const userService = new Service(userManager);
 const petsService = new Service(petsManager);
-
-export { productsService, userService , petsService};
+const cartService = new Service(cartManager);
+export { productsService, userService , petsService, cartService};

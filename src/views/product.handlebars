@@ -1,0 +1,113 @@
+<h1>Producto</h1>
+
+
+
+<ul class="product-list">
+  <li class="product-card">
+    <h3>{{product.title}}</h3>
+    <p>Precio: ${{product.price}}</p>
+    <p>Descripción: {{product.description}}</p>
+    <p>Código: {{product.code}}</p>
+    <p>Estado: {{product.status}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p>Categoría: {{product.category}}</p>
+
+    <!-- Verifica si existen imágenes -->
+    <div>
+      {{#if product.thumbnails}}
+        <img src="{{product.thumbnails.[0]}}" alt="Imagen del producto" />
+      {{else}}
+        <p>No hay imágenes disponibles para este producto.</p>
+      {{/if}}
+    </div>
+
+    {{#if user}}
+      <!-- Selector de cantidad solo si el usuario está logueado -->
+      <div class="quantity-selector">
+        <button class="quantity-btn" onclick="decrementQuantity()">-</button>
+        <input type="number" class="quantity-input" value="1" min="1" max="{{product.stock}}" id="quantity">
+        <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+      </div>
+    {{/if}}
+
+    <!-- Botones de compra -->
+    <div class="purchase-buttons">
+      <button 
+        class="buy-now-btn" 
+        {{#unless user}}disabled{{/unless}} 
+        {{#unless product.stock}}disabled{{/unless}} 
+        onclick="handleAddToCart('{{product._id}}')"
+      >
+        <i>🛒</i> Comprar ahora
+      </button>
+      <button 
+        class="add-to-cart-btn" 
+        {{#unless user}}disabled{{/unless}} 
+        {{#unless product.stock}}disabled{{/unless}} 
+        onclick="handleAddToCart('{{product._id}}')"
+      >
+        <i>+</i> Añadir al carrito
+      </button>
+    </div>
+    {{#if loginMessage}}
+  <div class="atention-message" role="alert">
+    <strong class="font-bold">Atención:</strong>
+    <span class="block sm:inline">{{loginMessage}}</span>
+  </div>
+{{/if}}
+  </li>
+</ul>
+
+<a href="/" class="back-button">Volver</a>
+
+<script>
+    // Mostrar mensaje si no hay usuario autenticado
+    const userId = "{{user._id}}";
+    const cartId = "{{cart}}";
+
+    async function handleAddToCart(productId) {
+        if (userId) {
+            alert('⚠️ Debes iniciar sesión para añadir productos al carrito.');
+            return ;
+        }
+
+        const quantity = document.getElementById('quantity')?.value || 1;
+
+        try {
+            const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity })
+            });
+
+            const data = await response.json();
+            if (!data.success) {
+                 console.error('Error al agregar al carrito:', data.error);
+                alert('Error al añadir al carrito');
+            } else {
+                alert('Producto agregado al carrito');
+                document.getElementById('quantity').value = 1;
+            }
+        } catch (err) {
+            console.error('Error al conectar con el servidor:', err);
+            alert('Error al conectar con el servidor');
+        }
+    }
+
+    function incrementQuantity() {
+        const input = document.getElementById('quantity');
+        const max = parseInt(input.getAttribute('max'));
+        let value = parseInt(input.value);
+        if (value < max) {
+            input.value = value + 1;
+        }
+    }
+
+    function decrementQuantity() {
+        const input = document.getElementById('quantity');
+        let value = parseInt(input.value);
+        if (value > 1) {
+            input.value = value - 1;
+        }
+    }
+</script>

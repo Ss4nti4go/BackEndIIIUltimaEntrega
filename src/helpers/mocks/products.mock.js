@@ -16,7 +16,7 @@ const createMockProduct = () => {
         code: faker.string.alphanumeric(8), // string único
         stock: faker.number.int({ min: 1, max: 100 }),
         category: faker.helpers.arrayElement(categories),
-        status: true // opcional, pero es requerido según tu schema
+        status: true 
     };
 };
 

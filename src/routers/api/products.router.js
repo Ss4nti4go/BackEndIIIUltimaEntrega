@@ -11,7 +11,7 @@ class ProductsRouter extends CustomRouter {
     init = () => {
         this.read("/", ["PUBLIC"] ,productController.readAll);
         this.read("/:id", ["PUBLIC"],productController.readById);
-        this.create("/",["ADMIN"] ,productController.createOne);
+        this.create("/",["PUBLIC"] ,productController.createOne);
         this.update("/:id", ["ADMIN"],productController.updateById);
         this.destroy("/:id", ["ADMIN"],productController.destroyById);
     }

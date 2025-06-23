@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+
+    <style>
+        /* Estilos generales */
+      
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+       
+        <main>
+            <section class="hero">
+                <h1>Bienvenido a tu nueva experiencia</h1>
+                <p>Descubre un mundo de posibilidades y servicios diseñados especialmente para ti.</p>
+                <div class="cta-buttons">
+                    <a href="login" class="btn">Iniciar sesión</a>
+                    <a href="register" class="btn btn-outline">Registrarse</a>
+                </div>
+            </section>
+            
+          
+            <section>
+                <ul class="product-list">
+  {{#each products}}
+    <li class="product-card">
+      <strong>{{this.title}}</strong> - ${{this.price}} <br>
+      <p>{{this.description}}</p><br>
+      <p>Código: {{this.code}}</p><br>
+      <p>Estado: {{this.status}}</p><br>
+      <p>Stock: {{this.stock}}</p><br>
+      <p>Categoría: {{this.category}}</p><br>
+      {{#if this.thumbnails}}
+        <div>
+          <img src="{{this.thumbnails.[0]}}" alt="Imagen del producto" />
+        </div>
+      {{/if}}
+      <a href="/product/{{this.id}}" class="product-link">Ver detalles</a>
+    </li>
+  {{/each}}
+</ul>
+
+<div class="pagination">
+  {{#if hasPrevPage}}
+    <a href="/?page={{prevPage}}&limit=5" class="pagination-btn">Anterior</a>
+  {{/if}}
+
+  <span>Página {{currentPage}} de {{totalPages}}</span>
+
+  {{#if hasNextPage}}
+    <a href="/?page={{nextPage}}&limit=5" class="pagination-btn">Siguiente</a>
+  {{/if}}
+</div>
+
+            </section>
+              <section class="features">
+                <h2>Nuestros servicios</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Velocidad</h3>
+                        <p>Acceso rápido y eficiente a todos nuestros servicios sin tiempos de espera.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Seguridad</h3>
+                        <p>Tu información siempre protegida con los más altos estándares de seguridad.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Innovación</h3>
+                        <p>Constantemente actualizando nuestras funciones para ofrecerte lo mejor.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 CoderSitio | Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+   
+</body>
+</html>

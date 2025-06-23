@@ -1,0 +1,34 @@
+# version de la API de kubernetes y tipo de recurso a crear
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codercommerce-sm
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: codercommerce-sm
+  template:
+    metadata:
+      labels:
+        app: codercommerce-sm
+    spec:
+      containers:
+        - name: codercommerce-sm
+          image: s4nti4goo/codercommerce-sm:1.0.0
+          ports:
+            - containerPort: 8080
+---
+# version de la API de kubernetes y tipo de recurso a crear y el nombre del service
+apiVersion: v1
+kind: Service
+metadata:
+  name: codercommerce-sm-service
+spec:
+  type: NodePort # va a exponer el servicio al exterior
+  selector:
+    app: codercommerce-sm
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30003

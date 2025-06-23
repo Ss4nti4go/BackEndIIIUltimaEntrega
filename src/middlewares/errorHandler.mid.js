@@ -1,7 +1,8 @@
 import errors from "../helpers/errors/errors.js"
+import logger from "../helpers/logger.helper.js"
 
 const errorHandler = (err, req , res, next) => {
-    console.log(err)
+    logger.ERROR(err)
     const {method, originalUrl: url} = req
     const error=err.message || errors.fatal.message
     const statusCode=err.statusCode || errors.fatal.statusCode

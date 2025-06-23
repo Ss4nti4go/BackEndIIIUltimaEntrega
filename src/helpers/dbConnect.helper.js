@@ -9,5 +9,7 @@ const dbConnect = async (url) => {
          logger.ERROR(error);
     }
 }
-
+export const isValidId = (id) => {
+    return Types.ObjectId.isValid(id);
+} 
 export default dbConnect

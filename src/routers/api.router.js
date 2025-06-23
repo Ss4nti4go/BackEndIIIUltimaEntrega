@@ -2,12 +2,15 @@ import { Router } from "express";
 import productRouter  from "./api/products.router.js";
 import mocksRouter from "./api/mocks.router.js";
 import usersRouter from "./api/users.router.js";
-//import authRouter from "./api/auth.router.js";
+import authRouter from "./api/auth.router.js";
+import cartsRouter from "./api/carts.router.js";
 const apiRouter = Router();
-//apiRouter.use("auth", authRouter);
+
+apiRouter.use("/auth", authRouter);
 apiRouter.use("/products", productRouter);
 apiRouter.use("/mocks", mocksRouter);
 apiRouter.use("/users", usersRouter);
+apiRouter.use("/carts", cartsRouter);
 
 apiRouter.get("/sumar/pocos", (req, res) => {
     let total = 0;

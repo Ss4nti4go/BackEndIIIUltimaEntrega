@@ -1,5 +1,5 @@
 import { response } from "express";
-import { productsService, userService } from "../services/services.js";
+import { productsService, userService, cartService } from "../services/services.js";
 import CustomError from "../helpers/errors/customError.js";
 import logger from "../helpers/logger.helper.js";
 
@@ -11,7 +11,10 @@ class Controller {
         createOne = async (req, res,) => {
 
                 const response = await this.service.createOne(req.body);
-                res.json401(response)
+                if (response.length === 0) {
+                        res.json404(response)
+                }
+                res.json200(response)
         }
         readAll = async (req, res) => {
                 const filter = req.query
@@ -79,8 +82,22 @@ class Controller {
                 res.json200(response)
 
         }
+        addProductToCart = async (req, res) => {
+                const response = await this.service.addProductToCart(req.params.id, req.body);
+                if (response.length === 0) {
+                        res.json404()
+                }
+                res.json200(response)
+        }
+        deleteProductFromCart = async (req, res) => {
+                const response = await this.service.deleteProductFromCart(req.params.id, req.body);
+                if (response.length === 0) {
+                        res.json404()
+                }
+                res.json200(response)
+        }
 }
 const productController = new Controller(productsService);
 const userController= new Controller(userService)
-
-export { productController, userController };
+const cartController = new Controller(cartService)
+export { productController, userController ,cartController};

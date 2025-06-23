@@ -1,0 +1,98 @@
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre de la mascota
+        species:
+          type: string
+          description: Especie de la mascota (perro, gato, pájaro, pez, conejo)
+        age:
+          type: integer
+          description: Edad estimada de la mascota
+        adotped:
+          type: boolean
+          description: Indica si la mascota fue adoptada
+      example:
+        name: "Michi"
+        species: "gato"
+        age: 4
+        adotped: false
+
+  responses:
+    201:
+      description: Recurso creado exitosamente
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              method:
+                type: string
+              url:
+                type: string
+              response:
+                type: object
+            example:
+              method: "GET"
+              url: "/api/mocks/mockingpets"
+              response:
+                name: "Luna"
+                species: "conejo"
+                age: 3
+                adotped: true
+
+paths:
+  /api/mocks/mockingpets:
+    get:
+      summary: Devuelve un array de 20 mascotas mock
+      tags:
+        - Pets
+      responses:
+        200:
+          description: Lista de mascotas generadas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+
+  /api/mocks/generateData:
+    post:
+      summary: Genera usuarios y mascotas mock
+      tags:
+        - Pets
+      parameters:
+        - name: users
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Cantidad de usuarios a generar
+        - name: pets
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Cantidad de mascotas a generar
+      responses:
+        201:
+          description: Datos generados exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  usersCreated:
+                    type: integer
+                  petsCreated:
+                    type: integer
+                example:
+                  message: "Datos generados"
+                  usersCreated: 10
+                  petsCreated: 20

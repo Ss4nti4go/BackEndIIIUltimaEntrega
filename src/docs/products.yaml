@@ -1,0 +1,163 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción detallada del producto
+        code:
+          type: string
+          description: Código único del producto
+        status:
+          type: boolean
+          description: Disponibilidad (true/false)
+        price:
+          type: number
+          description: Precio del producto
+        stock:
+          type: integer
+          description: Cantidad en stock
+        category:
+          type: string
+          description: Categoría del producto
+        thumbnails:
+          type: string
+          format: uri
+          description: URL de imagen
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      example:
+        _id: "665a123e0c9ab30018dabcde"
+        title: "Proteína Whey"
+        description: "Suplemento proteico de alta calidad"
+        code: "PW-001"
+        status: true
+        price: 1500
+        stock: 50
+        category: "Suplementos"
+        thumbnails: "https://via.placeholder.com/150"
+        createdAt: "2024-06-10T10:00:00Z"
+        updatedAt: "2024-06-10T11:00:00Z"
+
+  responses:
+    400:
+      description: Petición incorrecta
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Missing required fields"
+              method: "POST"
+              url: "/api/products"
+    401:
+      description: No autorizado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Invalid credentials"
+              method: "POST"
+              url: "/api/products"
+    403:
+      description: Acceso denegado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Forbidden"
+              method: "POST"
+              url: "/api/products"
+    500:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Unexpected server error"
+              method: "POST"
+              url: "/api/products"
+
+paths:
+  /api/products:
+    post:
+      summary: Crear un producto
+      tags:
+        - Product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        201:
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    $ref: '#/components/schemas/Product'
+                  method:
+                    type: string
+                  url:
+                    type: string
+                example:
+                  response:
+                    title: "Proteína Whey"
+                    price: 1500
+                    stock: 50
+                  method: "POST"
+                  url: "/api/products"
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'

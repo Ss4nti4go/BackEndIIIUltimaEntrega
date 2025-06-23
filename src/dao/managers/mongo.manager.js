@@ -1,7 +1,7 @@
 import PetModel from "../models/petsModel.js";
 import productModel from "../models/product.models.js";
 import userModel from "../models/users.models.js";
-
+import cartModel from "../models/cart.model.js";
 class MongoManager {
     constructor(model) {
         this.model = model;
@@ -30,8 +30,15 @@ class MongoManager {
     destroyById = async (id) => {
         return await this.model.findOneAndDelete(id);
     }
+    addProductToCart = async (cid, pid) => {
+        return await this.model.findByIdAndUpdate(cid, { $push: { products: { productId: pid } } }, { new: true });
+    }
+    deleteProductFromCart = async (cid, pid) => {
+        return await this.model.findByIdAndUpdate(cid, { $pull: { products: { productId: pid } } }, { new: true });
+    }
 }
 const productsManager = new MongoManager(productModel);
 const userManager = new MongoManager(userModel);
 const petsManager = new MongoManager(PetModel);
-export { productsManager, userManager, petsManager };
+const cartManager = new MongoManager(cartModel);
+export { productsManager, userManager, petsManager, cartManager };

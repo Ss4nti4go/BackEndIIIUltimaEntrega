@@ -8,7 +8,14 @@
     "start": "node index.js --mode=prod",
     "dev": "node --watch index.js",
     "artillery-simple": "artillery quick --count 500 --num 2 http://localhost:8080/api/sumar/pocos -o ./test/artillery/simple.json",
-    "artillery-complex": "artillery quick --count 500 --num 2 http://localhost:8080/api/sumar/muchos -o ./test/artillery/simple.json"
+    "artillery-complex": "artillery quick --count 500 --num 2 http://localhost:8080/api/sumar/muchos -o ./test/artillery/simple.json",
+    "build-image": "docker build -t coderserver-sm .",
+    "run-image": "docker run -p 8080:8080 coderserver-sm",
+    "push-image": "docker push s4nti4goo/codercommerce-sm:1.0.0",
+    "retag": "docker tag coderserver-sm s4nti4goo/codercommerce-sm:1.0.0",
+    "apply-manifest": "kubectl apply -f manifest.yaml",
+    "mocha": "mocha ./test/mocha",
+    "super": "mocha ./test/supertest"
   },
   "keywords": [],
   "author": "",
@@ -17,14 +24,25 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "commander": "^13.1.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.1",
+    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.3",
+    "mongoose-paginate-v2": "^1.9.1",
     "nodemon": "^3.1.10",
+    "paginate": "^0.2.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.8.0"
+    "@faker-js/faker": "^9.8.0",
+    "chai": "^5.2.0",
+    "mocha": "^11.7.0",
+    "supertest": "^7.1.1"
   }
 }

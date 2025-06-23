@@ -14,7 +14,7 @@ class MockRouter extends CustomRouter {
 
   init = () => {
 
-    // ✔ /api/mocks/products/:n
+ 
     this.read("/products/:n", ["PUBLIC"], async (req, res) => {
       const { n } = req.params;
       for (let i = 0; i < n; i++) {
@@ -24,7 +24,7 @@ class MockRouter extends CustomRouter {
       res.json201({ inserted: Number(n), type: "products" });
     });
 
-    // ✔ /api/mocks/users/:n
+
     this.read("/users/:n", ["PUBLIC"], async (req, res) => {
       const { n } = req.params;
       for (let i = 0; i < n; i++) {
@@ -35,7 +35,7 @@ class MockRouter extends CustomRouter {
       res.json201({ inserted: Number(n), type: "users" });
     });
 
-    // ✔ /api/mocks/mockingusers
+
     this.read("/mockingusers", ["PUBLIC"], async (req, res) => {
       const mocks = [];
       for (let i = 0; i < 50; i++) {
@@ -46,7 +46,7 @@ class MockRouter extends CustomRouter {
       res.json200(mocks);
     });
 
-    // ✔ /api/mocks/mockingpets
+  
     this.read("/mockingpets", ["PUBLIC"], async (req, res) => {
       const mocks = [];
       for (let i = 0; i < 20; i++) {
@@ -56,7 +56,6 @@ class MockRouter extends CustomRouter {
       res.json200(mocks);
     });
 
-    // ✔ /api/mocks/generateData?users=10&pets=5
     this.create("/generateData", ["PUBLIC"], async (req, res) => {
       const { users = 0, pets = 0 } = req.query;
       let usersCreated = 0;

@@ -1,6 +1,6 @@
-import { createLogger, format, transports, addColors} from "winston";
+import { createLogger, format, transports, addColors } from "winston";
 
-const { colorize, simple }= format;
+const { combine, timestamp, printf, colorize } = format;
 
 const levels = {
     ERROR: 0,
@@ -11,20 +11,33 @@ const levels = {
 
 const colors = {
     ERROR: "red",
-    WARN: "orange",
+    WARN: "yellow",
     INFO: "blue",
     HTTP: "green"
 };
 
 addColors(colors);
+
+const logFormat = combine(
+    colorize({ all: true }),
+    timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    printf(({ timestamp, level, message }) => `[${timestamp}] ${level}: ${message}`)
+);
+
 const logger = createLogger({
     levels,
-    format: colorize(),
+    format: logFormat,
     transports: [
-        new transports.Console({level: "HTTP", format: simple()}),
-        new transports.File({filename: "./src/helpers/errors/errors.log", level: "WARN", format: simple()}),
-        new transports.File({filename: "./src/helpers/errors/http.log", level: "HTTP", format: simple()})
+        new transports.Console({ level: "HTTP" }),
+        new transports.File({
+            filename: "./src/helpers/errors/errors.log",
+            level: "WARN"
+        }),
+        new transports.File({
+            filename: "./src/helpers/errors/http.log",
+            level: "HTTP"
+        })
     ]
-})
+});
 
-export default logger
+export default logger;

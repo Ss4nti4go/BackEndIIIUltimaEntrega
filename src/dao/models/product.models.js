@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-
-const productSchema = new mongoose.Schema(
-    {
+import { Schema, model } from 'mongoose';
+import paginate from 'mongoose-paginate-v2';
+const productSchema = new Schema({
     title: { type: String, required: [true, 'El titulo es obligatorio'], index:{ name: 'idx_title'} },
     description: { type: String, required: [true, 'La descripcion es obligatoria']},
     code: { type: String, required: [true, 'El codigo es obligatorio'], unique: [true, 'Este codigo ya existe, debe ser unico'] },
@@ -13,9 +12,11 @@ const productSchema = new mongoose.Schema(
         required: [true, 'La categoria es obligatoria'],  
         enum: ['Proteinas', 'Suplementos', 'Accesorios', 'Vitaminas', 'Equipamiento', 'Calzado', 'Ropa', 'Otros' ],
     },
-    thumbnail: { type: String, required:  false, default: "https://via.placeholder.com/150" },
-    },
-    { timestamps: true }
-);
-const productModel = mongoose.model('products', productSchema);
+    thumbnail: { type: String, required:  false },
+});
+
+productSchema.plugin(paginate);
+
+const productModel = model('Product', productSchema); 
+
 export default productModel;

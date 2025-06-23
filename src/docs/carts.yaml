@@ -1,0 +1,241 @@
+components:
+  schemas:
+    CartProduct:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+          description: ID del producto
+        quantity:
+          type: integer
+          minimum: 1
+          description: Cantidad del producto
+      required: [productId, quantity]
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: uuid
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartProduct'
+        user:
+          type: string
+          format: uuid
+          description: ID del usuario asociado
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      example:
+        _id: "665b23ae123abc001234abcd"
+        products:
+          - productId: "665a111e0c9ab30018dab111"
+            quantity: 2
+          - productId: "665a222e0c9ab30018dab222"
+            quantity: 1
+        user: "665a333e0c9ab30018dab333"
+        createdAt: "2024-06-15T10:00:00Z"
+        updatedAt: "2024-06-15T12:00:00Z"
+
+  responses:
+    400:
+      description: Petición incorrecta
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Missing required fields"
+              method: "POST"
+              url: "/api/carts"
+    401:
+      description: No autorizado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Unauthorized"
+              method: "GET"
+              url: "/api/carts"
+    403:
+      description: Acceso denegado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Forbidden"
+              method: "DELETE"
+              url: "/api/carts/{id}"
+    500:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              method:
+                type: string
+              url:
+                type: string
+            example:
+              error: "Unexpected error"
+              method: "POST"
+              url: "/api/carts"
+
+paths:
+  /api/carts:
+    get:
+      summary: Obtener todos los carritos
+      tags: [Cart]
+      responses:
+        200:
+          description: Lista de carritos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+                  method:
+                    type: string
+                  url:
+                    type: string
+                example:
+                  response:
+                    - _id: "665..."
+                      user: "665..."
+                      products: []
+                  method: "GET"
+                  url: "/api/carts"
+        500:
+          $ref: '#/components/responses/500'
+
+    post:
+      summary: Crear un nuevo carrito
+      tags: [Cart]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                products:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CartProduct'
+      responses:
+        201:
+          description: Carrito creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        400:
+          $ref: '#/components/responses/400'
+        500:
+          $ref: '#/components/responses/500'
+
+  /api/carts/{id}:
+    get:
+      summary: Obtener carrito por ID
+      tags: [Cart]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Carrito no encontrado
+        500:
+          $ref: '#/components/responses/500'
+
+    put:
+      summary: Actualizar un carrito
+      tags: [Cart]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                products:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CartProduct'
+      responses:
+        200:
+          description: Carrito actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        400:
+          $ref: '#/components/responses/400'
+        500:
+          $ref: '#/components/responses/500'
+
+    delete:
+      summary: Eliminar un carrito
+      tags: [Cart]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carrito eliminado
+        500:
+          $ref: '#/components/responses/500'
